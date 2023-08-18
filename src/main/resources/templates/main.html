@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="get">
+        <label>이름:
+            <input th:value="${name}" name="name" type="text">
+            <button type="submit">제출</button>
+        </label>
+    </form>
+    <h1 th:text="${message}">이것이 뷰 입니다!!!</h1>
+    <h1 th:text="${name}">이름</h1>
+    <ul>
+        <li th:text="${no}"></li>
+        <li th:text="${author}"></li>
+        <li th:text="${comment}"></li>
+    </ul>
+</body>
+</html>

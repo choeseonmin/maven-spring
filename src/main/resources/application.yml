@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: local
+  #thymeleaf ??
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/   # .html ?? ?? (src/main/resources/templates)
+    suffix: .html   # ???
+    cache: false # default: true, ?? ??? false? ?? ?? ??
+  mvc:
+    static-path-pattern: /static/** # spring mvc ?? ???? ?? (css, js?? ?)
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/spring_db # spring_db ??? ??? DB?? ???.
+    username: root
+    #password: password # ?? ??? ?? ?? ????.
+mybatis:
+  mapper-locations:
+    - classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # (DB)value_name -> (Java)valueName ?? ??
+server:
+  servlet:
+    context-path: /
+  port: 8080 # ? ??? ?? ??
