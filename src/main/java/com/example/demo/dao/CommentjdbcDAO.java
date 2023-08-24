@@ -18,6 +18,7 @@ public class CommentjdbcDAO {
 
         return jdbcTemplate.query("SELECT * FROM tb_comment", (rs, rowNum) -> {
             Map<String, Object> mss = new HashMap<>();
+
             mss.put("no", rs.getInt(1));
             mss.put("author", rs.getString(2));
             mss.put("comment", rs.getString(3));
