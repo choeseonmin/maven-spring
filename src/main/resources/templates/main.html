@@ -25,13 +25,15 @@
             <th>댓글</th>
             <th>날짜</th>
             <th>삭제</th>
+            <th>수정</th>
         </tr>
         <tr th:each="comment : ${commentList}">
             <td th:text="${comment.no}">1</td>
             <td th:text="${comment.author}">스프링</td>
             <td th:text="${comment.comment}">안녕하세요</td>
-            <td th:text="${comment.date}">2023-08-17</td>
+            <td th:text="${#temporals.format(comment.date, 'yyyy.MM.dd HH:mm')}">2023-08-17</td>
             <td> <button class="btn btn-outline-dark" th:onclick="|deleteComment(${comment.no})|">삭제</button> </td>
+            <td> <a class="btn btn-outline-danger" th:href="@{/comment/} + ${comment.no}" href="/comments/1">수정</a></td>
         </tr>
     </table>
 </div>

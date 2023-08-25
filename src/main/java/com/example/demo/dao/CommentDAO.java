@@ -8,10 +8,14 @@ import java.util.List;
 
 @Mapper
 public interface CommentDAO {
-    List<CommentModel> sellectAllComment();
+    List<CommentModel> selectAllComment();
+
+    CommentModel selectComment(@Param("no") int no);
 
     void insertComment(CommentModel comment);
 
     void deleteComment(@Param("no") int no);
+
+    void updateComment(CommentModel comment);
 }
 
