@@ -5,6 +5,12 @@ controller, view 작성
 데이터베이스 연결 -> db에 입력한 값 게시판에 구현
 
 
+
+
+
+
+
+
 8.24
 dao, model 패키지 생성
 xml 작성 -> 글 작성 기능(postmapping), 삭제 기능 구현(deletemapping)
