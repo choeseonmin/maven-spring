@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dao.CommentDAO;
 import com.example.demo.dao.CommentjdbcDAO;
 import com.example.demo.model.CommentModel;
+import com.example.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,7 @@ import java.util.Map;
 public class MainController {
 
     @Autowired
-    private CommentjdbcDAO commentjdbcDAO;
-
-    @Autowired
-    private CommentDAO commentDAO;
+    private CommentService commentService;
 
     // 댓글 목록 처리
     @GetMapping("/")
@@ -26,7 +24,7 @@ public class MainController {
 
         //List<Map<String, ?>> commentList = commentjdbcDAO.selectAllCommentList();
 
-        List<CommentModel> cmList = commentDAO.selectAllComment();
+        List<CommentModel> cmList = commentService.getAllCommentList();
 
         model.addAttribute("commentList", cmList); // 댓글 리스트를 view로 전달한다.
 
@@ -39,10 +37,7 @@ public class MainController {
     @PostMapping("/comments")
     public String createComment(CommentModel commentModel) {
 
-        System.out.println(commentModel.getAuthor());
-        System.out.println(commentModel.getComment());
-
-        commentDAO.insertComment(commentModel);
+        commentService.createComment(commentModel);
 
         return "redirect:/";
     }
@@ -51,7 +46,7 @@ public class MainController {
     @DeleteMapping("/comments/{no}")
     public String deleteComment(@PathVariable int no){   //@pathvariable이 {no}를 자동으로 매핑
 
-        commentDAO.deleteComment(no);
+        commentService.deleteComment(no);
 
         return "redirect:/";
     }
@@ -60,8 +55,7 @@ public class MainController {
     @GetMapping("/comment/{no}")
     public String modifyCommentForm(@PathVariable int no, Model model) {
 
-        CommentModel comment = commentDAO.selectComment(no);
-        model.addAttribute("comment", comment);
+        CommentModel comment = commentService.getComment(no);
 
         return "comment-form";
     }
@@ -72,7 +66,7 @@ public class MainController {
         //댓글 정보를 update 처리
         commentModel.setNo(no);
 
-        commentDAO.updateComment(commentModel);
+        commentService.updateComment(commentModel);
 
         return "redirect:/";
     }
