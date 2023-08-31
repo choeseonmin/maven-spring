@@ -5,12 +5,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
+<nav th:insert="~{navbar :: navbar}" ></nav>
 <div id="form" class="m-5 p-5 border">
     <h1>댓글 작성</h1>
     <form action="/comments" method="post">
         <div class="input-group">
-            <input class="form-control" type="text" name="author"  valuse="작성자" placeholder="작성자 이름">
-            <input class="form-control" type="text" name="comment" value="" placeholder="댓글 내용 입력">
+            <input class="form-control" type="text" name="author"  valuse="작성자" placeholder="작성자 이름" required minlength="2" maxlength="10">
+            <input class="form-control" type="text" name="comment" value="" placeholder="댓글 내용 입력" required>
             <button class="btn btn-outline-secondary" type="submit">등록</button>
         </div>
     </form>
@@ -41,7 +42,7 @@
 
     function deleteComment(no) {
         if(confirm('진짜로 삭제할까요?')) {
-           fetch("/comments/" + no, {
+           fetch("/api/comments/" + no, {
                 method: "DELETE", // *GET, POST, PUT, DELETE 등
             }).then(reloadPage);
         }
@@ -50,7 +51,7 @@
     function reloadPage(){
         location.reload();
     }
-
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

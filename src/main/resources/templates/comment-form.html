@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<nav th:insert="~{navbar :: navbar}" ></nav>
 <div id="form" class="m-5 p-5 border">
   <h1>댓글 수정</h1>
   <form th:action="@{/comments/} + ${comment.no}" action="/comments/" method="post">
@@ -14,6 +15,7 @@
       <input class="form-control" type="text" name="author" th:value="${comment.author}" value="작성자" placeholder="작성자 이름">
       <input class="form-control" type="text" name="comment" th:value="${comment.comment}" value="" placeholder="댓글 내용 입력">
       <button class="btn btn-outline-secondary" type="submit">저장</button>
+
     </div>
   </form>
 </div>
